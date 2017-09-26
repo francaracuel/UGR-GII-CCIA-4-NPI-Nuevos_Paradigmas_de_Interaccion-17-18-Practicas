@@ -2,7 +2,7 @@
 
 Prácticas realizadas en la asignatura NPI (Nuevos Paradigmas de Interacción) del grado en Ingeniería Informática en el curso 2017/2018, UGR.
 
-## Autores
+## Autor
 
 
 Francisco Javier Caracuel Beltrán
