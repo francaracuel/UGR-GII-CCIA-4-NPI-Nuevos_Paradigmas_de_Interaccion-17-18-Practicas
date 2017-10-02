@@ -4,8 +4,8 @@ Prácticas realizadas en la asignatura NPI (Nuevos Paradigmas de Interacción) d
 
 ## Autor
 
+Juan Manuel Fajardo Sarmiento
 
 Francisco Javier Caracuel Beltrán
-
 
 ###### GNU General Public License v3.0
