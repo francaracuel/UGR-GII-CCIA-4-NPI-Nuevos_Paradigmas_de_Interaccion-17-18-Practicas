@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Método que se ejecuta al pulsar el botón de Agente Conversacional
     public void initCA(View view) {
-        Intent intent = new Intent(this, ConversationalAgent.class);
+        Intent intent = new Intent(this, ConversationalAgentActivity.class);
         startActivity(intent);
     }
 
