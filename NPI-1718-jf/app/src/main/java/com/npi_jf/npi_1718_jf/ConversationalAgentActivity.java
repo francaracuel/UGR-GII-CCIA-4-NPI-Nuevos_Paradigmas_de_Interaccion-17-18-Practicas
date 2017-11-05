@@ -23,6 +23,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 public class ConversationalAgentActivity extends AppCompatActivity implements TaskCompleted{
@@ -63,7 +64,7 @@ public class ConversationalAgentActivity extends AppCompatActivity implements Ta
         // BORRAR DE AQUI
         // Cuando se quiera enviar una petición al Agente se hace a través de la siguiente instrucción.
         // La respuesta se recibe en el método onTaskComplete(String)
-        ca.execQuery("Hello");
+        //ca.execQuery("Hi");
         ////////////////////////////////////////////////////////////////////////////////////////////
 
     }
@@ -83,4 +84,14 @@ public class ConversationalAgentActivity extends AppCompatActivity implements Ta
         toast.show();
 
     }
+
+    public void query(View view){
+
+        EditText text = (EditText)findViewById(R.id.query);
+        String value = text.getText().toString();
+
+        ca.execQuery(value);
+
+    }
+
 }
