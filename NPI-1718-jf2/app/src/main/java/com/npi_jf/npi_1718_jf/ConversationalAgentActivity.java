@@ -27,7 +27,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 import android.content.Intent;
 import android.speech.RecognizerIntent;
@@ -38,7 +37,7 @@ import android.speech.tts.TextToSpeech;
 
 
 
-public class ConversationalAgentActivity extends AppCompatActivity implements DataSend{
+public class ConversationalAgentActivity extends AppCompatActivity{
 
     private static final int REQ_CODE_SPEECH_INPUT = 100;
     private final int MY_PERMISSIONS_REQUEST_RECORD_AUDIO = 22;
@@ -50,9 +49,6 @@ public class ConversationalAgentActivity extends AppCompatActivity implements Da
     ConversationalAgent ca;
     Voice voice;
     TextToSpeech tts;
-
-    TextView tvQuestion;
-    TextView tvAnswer;
 
 
     /**
@@ -75,10 +71,8 @@ public class ConversationalAgentActivity extends AppCompatActivity implements Da
             @Override
             public void onClick(View view) {
                 if (voice.isSpeaking() == false) {
-
                     checkSRPermission();
                     voice.listen();
-
                 }
                 else
                     voice.stopSpeaking();
@@ -93,47 +87,20 @@ public class ConversationalAgentActivity extends AppCompatActivity implements Da
 
         voice = new Voice(this);
 
-
-        tvQuestion = (TextView)findViewById(R.id.textViewQuestion);
-
-        tvAnswer = (TextView)findViewById(R.id.textViewAnswer);
-
     }
 
-    /**
-     * Método que obtiene la respuesta del Agente
-     * @param data - Tiene la respuesta que ha recibido la clase ConversationalAgent al hacer
-     *                  la petición a Api.io
-     */
-    @Override
-    public void onDataSended(int code, String data) {
+    public void checkSRPermission() {
+        if (android.support.v4.content.ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.RECORD_AUDIO)
+                != PackageManager.PERMISSION_GRANTED) {
 
-        TextView tv;
+            // If  an explanation is required, show it
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.RECORD_AUDIO))
+                Toast.makeText(getApplicationContext(), getString(R.string.permission_explanation), Toast.LENGTH_SHORT).show();
 
-        switch (code){
-
-            case 0:
-
-                tvQuestion.setText(data);
-
-                break;
-
-            case 1:
-
-                voice.speak(data);
-
-                tvAnswer.setText(data);
-
-                break;
-
+            // Request the permission.
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO},
+                    MY_PERMISSIONS_REQUEST_RECORD_AUDIO); //Callback in "onRequestPermissionResult"
         }
-
-        /*int duration = Toast.LENGTH_SHORT;
-        Toast toast;
-
-        toast = Toast.makeText(getApplicationContext(), data, duration);
-        toast.show();*/
-
     }
 
     /**
@@ -154,19 +121,4 @@ public class ConversationalAgentActivity extends AppCompatActivity implements Da
             }
         }
     }
-
-    public void checkSRPermission() {
-        if (android.support.v4.content.ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.RECORD_AUDIO)
-                != PackageManager.PERMISSION_GRANTED) {
-
-            // If  an explanation is required, show it
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.RECORD_AUDIO))
-                Toast.makeText(getApplicationContext(), getString(R.string.permission_explanation), Toast.LENGTH_SHORT).show();
-
-            // Request the permission.
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO},
-                    MY_PERMISSIONS_REQUEST_RECORD_AUDIO); //Callback in "onRequestPermissionResult"
-        }
-    }
-
 }

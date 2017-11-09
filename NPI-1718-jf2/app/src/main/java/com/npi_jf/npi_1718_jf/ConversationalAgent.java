@@ -21,7 +21,6 @@ package com.npi_jf.npi_1718_jf;
 // Imports del SDK de Android
 import android.content.Context;
 import android.os.AsyncTask;
-import android.provider.ContactsContract;
 
 // Imports de Api.io
 import ai.api.AIServiceException;
@@ -119,7 +118,7 @@ public class ConversationalAgent{
 
             // Para poder devolver la respuesta al Activity que lo llama es necesario indicar el
             // método que lo devuelve
-            DataSend ds = (DataSend)context;
+            TaskCompleted tc = (TaskCompleted)context;
 
             // Hace toda la operación en segundo plano que se requiere
             @Override
@@ -182,7 +181,7 @@ public class ConversationalAgent{
                     //toast.show();
 
                     // Se le pasa el resultado a través del método que implementa el Activity
-                    ds.onDataSended(1, result.getFulfillment().getSpeech());
+                    tc.onTaskComplete(result.getFulfillment().getSpeech());
 
                 }
 

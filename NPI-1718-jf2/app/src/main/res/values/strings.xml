@@ -2,9 +2,6 @@
     <string name="app_name">NPI-1718-jf</string>
     <string name="title_activity_conversational_agent">ConversationalAgent</string>
     <string name="button_init_ca">Agente Conversacional</string>
-    <string name="juan">Juan Manuel Fajardo Sarmiento</string>
-    <string name="fran">Francisco Javier Caracuel Beltrán</string>
-    <string name="about">NPI - 1718 - UGR - CCIA</string>
     <string name="permission_denied">Esta aplicación no funciona sin acceso al micrófono</string>
     <string name="permission_explanation">Es necesario acceder al micrófono para el reconocimiento de su voz"</string>
 </resources>
