@@ -19,6 +19,10 @@ package com.npi_jf.npi_1718_jf;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -54,6 +58,8 @@ public class ConversationalAgentActivity extends AppCompatActivity implements Da
     TextView tvQuestion;
     TextView tvAnswer;
 
+    SensorManager sensorManager;
+
 
     /**
      * Método que se ejecuta al iniciar el Activity
@@ -76,6 +82,9 @@ public class ConversationalAgentActivity extends AppCompatActivity implements Da
             public void onClick(View view) {
                 if (voice.isSpeaking() == false) {
 
+                    tvQuestion.setText(null);
+                    tvAnswer.setText(null);
+
                     checkSRPermission();
                     voice.listen();
 
@@ -97,6 +106,58 @@ public class ConversationalAgentActivity extends AppCompatActivity implements Da
         tvQuestion = (TextView)findViewById(R.id.textViewQuestion);
 
         tvAnswer = (TextView)findViewById(R.id.textViewAnswer);
+
+        sensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);
+
+        final Sensor proximitySensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
+
+        SensorEventListener proximitySensorListener = new SensorEventListener() {
+            @Override
+            public void onSensorChanged(SensorEvent event) {
+
+                if(event.values[0] < proximitySensor.getMaximumRange()){
+                    voice.stopSpeaking();
+                }
+
+            }
+
+            @Override
+            public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+            }
+        };
+
+        sensorManager.registerListener(proximitySensorListener, proximitySensor, 1000*1000*2);
+
+
+        Sensor gyrSensor = sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
+
+
+
+        SensorEventListener gyrSensorListener = new SensorEventListener() {
+            @Override
+            public void onSensorChanged(SensorEvent event) {
+
+                float value = 0.5f;
+
+                if(event.values[2] > value){
+                    try {
+                        finish();
+                    } catch (Throwable throwable) {
+                        throwable.printStackTrace();
+                    }
+                }
+
+            }
+
+            @Override
+            public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+            }
+        };
+
+        sensorManager.registerListener(gyrSensorListener, gyrSensor, 1000*1000*2);
+
 
     }
 
@@ -168,5 +229,12 @@ public class ConversationalAgentActivity extends AppCompatActivity implements Da
                     MY_PERMISSIONS_REQUEST_RECORD_AUDIO); //Callback in "onRequestPermissionResult"
         }
     }
+
+
+
+
+
+
+
 
 }
