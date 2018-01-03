@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" tools:context="com.npi_jf.npi_1718_jf.MainActivity"
+    android:background="@drawable/museum_background">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".33"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:background="@drawable/museum_background_ibn_button">
+
+                <Button
+                    android:id="@+id/button_init_gc"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:onClick="initGC"
+                    android:layout_gravity="center"
+                    android:background="@drawable/gallery_controller"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".33"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:background="@drawable/museum_background_ibn_button">
+
+                <Button
+                    android:id="@+id/button_init_ca"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:onClick="initCA"
+                    android:layout_gravity="center"
+                    android:background="@drawable/museum_ibn"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".34"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:background="@drawable/museum_background_ibn_button">
+
+                <Button
+                    android:id="@+id/button_init_nfc"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:onClick="initMapNFC"
+                    android:layout_gravity="center"
+                    android:background="@drawable/map_nfc"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</android.support.constraint.ConstraintLayout>
