@@ -1,0 +1,8 @@
+
+    After creating a project in the usual way, select the File > Project Properties menu command to open the Project Properties dialog.
+    Click the Libraries item.
+    Click Add Jar/Folder button.
+    Find the LeapJava.jar file in your Leap Motion SDK.
+    Click Ok to add the Jar file to your project.
+    Next, click the Run item in the Project properties list
+    Set the VM Options field to set the -Djava.library.path parameter to the path to the proper folder containing the Leap Motion native libraries.
