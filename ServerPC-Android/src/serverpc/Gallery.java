@@ -15,7 +15,6 @@
 // JFrame que contiene la interfaz gráfica para mostrar los personajes
 //
 ////////////////////////////////////////////////////////////////////////////////
-
 package serverpc;
 
 import java.awt.event.ActionEvent;
@@ -24,13 +23,13 @@ import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
 public class Gallery extends javax.swing.JFrame {
-    
+
     // Nombre del personaje actual
     private String name;
-    
+
     // Ruta del fichero del personaje
     private String path;
-    
+
     // Variable utilizada para cambiar el color al borde de la selección de
     // la imagen
     private boolean select;
@@ -40,15 +39,14 @@ public class Gallery extends javax.swing.JFrame {
      */
     public Gallery() {
         initComponents();
-        
+
         //setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
-        
         // Se centra la ventana
         setLocationRelativeTo(null);
-        
+
         // Comienza sin estar seleccionada la imagen
         select = false;
-        
+
     }
 
     /**
@@ -120,7 +118,7 @@ public class Gallery extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabelImage;
     private javax.swing.JLabel jLabelName;
@@ -130,61 +128,61 @@ public class Gallery extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelSelect;
     // End of variables declaration//GEN-END:variables
 
-
     // Se cambia la imagen que se está mostrando en la galería
-    public void setImage(String name, String file){
-        
+    public void setImage(String name, String file) {
+
         this.name = name;
         this.path = file;
-        
+
         // Se cambia el nombre del personaje que se quiere mostrar
         jLabelName.setText(name);
-        
+
         // Se cambia el icono del personaje que se quiere mostrar
         jLabelImage.setIcon(new javax.swing.ImageIcon(getClass().getResource(file)));
-        
+
         // Al cambiar de personaje se elimina el borde
         jLabelImage.setBorder(null);
-        
+
         // Se indica que no ha sido seleccionado
         select = false;
-        
+
     }
-    
-    public void selectImage(){
-        
+
+    public void selectImage() {
+
         java.awt.Color color;
-        
-        if(select){
+
+        if (select) {
             color = new java.awt.Color(30, 144, 255);
-        } else{
+        } else {
             color = new java.awt.Color(150, 150, 150);
         }
-        
+
         jLabelImage.setBorder(new javax.swing.border.LineBorder(color, 2, true));
-        
+
         // Si ha sido re-seleccionado se muestra el mensaje indicando que se
         // inicia la conversación con el agente
-        if(select)
+        if (select) {
             showMessage("Personaje seleccionado", "Iniciando la conversación...");
-        
+        }
+
         // Se cambia la selección
         select = !select;
-        
-    }
-    
-    private void showMessage(String title, String message){
-        
-        JOptionPane pane = new JOptionPane(message, 
-                                            JOptionPane.INFORMATION_MESSAGE);
-                JDialog dialog = pane.createDialog(null, title);
-                dialog.setModal(false);
-                dialog.setVisible(true);
 
-                new Timer(5000, (ActionEvent e) -> {
-                    dialog.setVisible(false);
-                }).start();
-        
+    }
+
+    private void showMessage(String title, String message) {
+
+        JOptionPane pane = new JOptionPane(message,
+                JOptionPane.INFORMATION_MESSAGE);
+        JDialog dialog = pane.createDialog(null, title);
+        dialog.setModal(false);
+        dialog.setVisible(true);
+
+        new Timer(5000, (ActionEvent e) -> {
+            dialog.setVisible(false);
+        }).start();
+
     }
 
 }
