@@ -50,7 +50,8 @@ public class MainActivity extends AppCompatActivity {
 
     // Se conecta con NFC para obtener el punto al que se quiere ir en el mapa
     public void initMapNFC(View view) {
-
+        Intent intent = new Intent(this, ReadNFCActivity.class);
+        startActivity(intent);
     }
 
     @Override

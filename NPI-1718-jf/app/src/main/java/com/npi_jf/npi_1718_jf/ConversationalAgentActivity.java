@@ -142,6 +142,7 @@ public class ConversationalAgentActivity extends AppCompatActivity implements Da
                 if(event.values[2] > value){
                     try {
                         finish();
+                        voice.stopSpeaking();
                     } catch (Throwable throwable) {
                         throwable.printStackTrace();
                     }

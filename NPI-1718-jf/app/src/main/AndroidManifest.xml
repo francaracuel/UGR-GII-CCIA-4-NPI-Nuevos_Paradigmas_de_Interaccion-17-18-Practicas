@@ -4,12 +4,16 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.NFC" />
 
     <uses-feature
         android:name="android.hardware.sensor.proximity"
         android:required="true" />
     <uses-feature
         android:name="android.hardware.sensor.gyroscope"
+        android:required="true" />
+    <uses-feature
+        android:name="android.hardware.nfc"
         android:required="true" />
 
     <application
@@ -39,9 +43,19 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.npi_jf.npi_1718_jf.MainActivity" />
         </activity>
-        <activity android:name=".RemoteGalleryControllerActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/title_remote_gallery"></activity>
+        <activity
+            android:name=".RemoteGalleryControllerActivity"
+            android:label="@string/title_remote_gallery"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ReadNFCActivity">
+            <intent-filter>
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
